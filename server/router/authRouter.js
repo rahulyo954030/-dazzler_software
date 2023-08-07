@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const usersRouter = Router();
+const authRouter = Router();
 
-usersRouter.post('/signup', async(req, res)=>{
+authRouter.post('/signup', async(req, res)=>{
   const { userName, email, phoneNo, type, gender, passWord } = req.body;
 
   const uniqueEmail = await Users.countDocuments({email}) > 0 ? true : false;
@@ -38,7 +38,7 @@ usersRouter.post('/signup', async(req, res)=>{
       }
 })
 
-usersRouter.post("/login", async(req, res)=>{
+authRouter.post("/login", async(req, res)=>{
   const { name, passWord } = req.body;
   const user = await Users.findOne({name});
   if(!user){
@@ -70,46 +70,7 @@ usersRouter.post("/login", async(req, res)=>{
   }
 })
 
-
-authRouter.get("/getAll", async (req, res) => {
-  const getAllData = await Users.find({});
-  try {
-    if (getAllData) {
-      return res.status(200).json({ msg: "getAllData", getAllData });
-    }
-  } catch (error) {
-    return res.status(500).json({ msg: "server error", Error: error });
-  }
-});
-
-
-// Delete
-authRouter.delete("/delete/:id", async (req, res) => {
-  const { id } = req.params;
-  const deleteUserData = await Users.findByIdAndRemove({ _id: id });
-  try {
-    if (deleteUserData) {
-      return res.status(200).json({ msg: "deleteUserData", deleteUserData });
-    }
-  } catch (error) {
-    return res.status(500).json({ msg: "server error", Error: error });
-  }
-});
-
-
-authRouter.get("/getUserData/:userid", async (req, res) => {
-  const { userid } = req.params;
-  const getUserData = await Users.findById({ _id: userid });
-  try {
-    if (getUserData) {
-      return res.status(200).json({ msg: "getUserData", getUserData });
-    }
-  } catch (error) {
-    return res.status(500).json({ msg: "server error", Error: error });
-  }
-});
-
-module.exports = usersRouter;
+module.exports = authRouter;
 
 // "userName" : "nitesh",
 // "email" : "niftesh@gmail.com",

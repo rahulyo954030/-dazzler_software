@@ -1,7 +1,8 @@
 const express = require('express');
 const connection = require("./db/db")
 const cors = require('cors');
-const usersRouter = require('./router/userRouter');
+const authRouter = require('./router/authRouter');
+const usersRouter = require('./router/usersRouter');
 require("dotenv").config();
 
 
@@ -10,7 +11,8 @@ const app = express()
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-app.use('/auth', usersRouter)
+app.use('/auth', authRouter);
+app.use('/user', usersRouter);
 
 app.get('/', (req,res) => res.send('Hello'))
 

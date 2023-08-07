@@ -1,10 +1,10 @@
 const {Router} = require("express");
 const Users = require("../model/user");
 
-const usersCreateRouter = Router();
+const usersRouter = Router();
 
 // Get all
-usersCreateRouter.get("/getAll", async (req, res) => {
+usersRouter.get("/getAll", async (req, res) => {
     const getAllData = await Users.find({});
     try {
       if (getAllData) {
@@ -17,7 +17,7 @@ usersCreateRouter.get("/getAll", async (req, res) => {
   
   
   // Delete
-  usersCreateRouter.delete("/delete/:id", async (req, res) => {
+  usersRouter.delete("/delete/:id", async (req, res) => {
     const { id } = req.params;
     const deleteUserData = await Users.findByIdAndRemove({ _id: id });
     try {
@@ -29,6 +29,17 @@ usersCreateRouter.get("/getAll", async (req, res) => {
     }
   });
   
+//   Get single user
+  usersRouter.get("/getUserData/:userid", async (req, res) => {
+    const { userid } = req.params;
+    const getUserData = await Users.findById({ _id: userid });
+    try {
+      if (getUserData) {
+        return res.status(200).json({ msg: "getUserData", getUserData });
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: "server error", Error: error });
+    }
+  });
 
-
-module.exports = usersCreateRouter
+module.exports = usersRouter
