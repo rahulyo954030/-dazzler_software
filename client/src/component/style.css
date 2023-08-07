@@ -1,0 +1,37 @@
+.data_box{
+    /* background-color: #eff8ff; */
+    /* box-shadow: 0px 0px 5px 1px gray; */
+    border: 1px solid;
+    height: 27rem;
+    width: 22rem;
+    margin: auto;
+    /* margin-top: 4rem; */
+    text-align: center;
+    border-radius: 6px;
+}
+
+.name_inp{
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid #c5c1b2;
+}
+.last_inp{
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #c5c1b2;
+}
+
+.btn{
+    height: 2.5rem;
+    margin: 1rem;
+    width: 13rem;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}

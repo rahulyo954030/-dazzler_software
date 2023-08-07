@@ -1,0 +1,46 @@
+.signup_main_cont {
+    background-color: #eff8ff;
+    /* box-shadow: 0px 0px 5px 1px gray; */
+    border: 1px solid;
+    height: 35rem;
+    width: 20%;
+    margin: auto;
+    margin-top: 1.5rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  .inp1 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: 1px solid #d1c295;
+  }
+  .inp2 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #d1c295;
+  }
+
+  .inp3 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #d1c295;
+  }
+
+  .inp5{
+    width: 80%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    color: #ecf5f5;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #4f46e5;
+    border: none;
+  }

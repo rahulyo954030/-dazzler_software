@@ -1,0 +1,44 @@
+.login_main_container {
+    background-color: #eff8ff;
+    /* box-shadow: 0px 0px 5px 1px gray; */
+    border: 1px solid;
+    height: 23.5rem;
+    width: 20%;
+    margin: auto;
+    margin-top: 5rem;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .inpu1 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #d1c295;
+  }
+  .inpu2 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #d1c295;
+  }
+  .inpu3 {
+    width: 85%;
+    height: 2.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid #d1c295;
+  }
+  .inpu4 {
+        width: 80%;
+        height: 2.5rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+        color: #ecf5f5;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4f46e5;
+        border: none;
+  }

@@ -1,0 +1,10 @@
+.nav_div{
+    /* border: 1px solid red; */
+    height: 4rem;
+    background-color: #7e22ce;
+}
+.innerDiv{
+    display: flex;
+    justify-content: space-around;
+    
+}
