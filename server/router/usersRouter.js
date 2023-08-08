@@ -42,4 +42,20 @@ usersRouter.get("/getAll", async (req, res) => {
     }
   });
 
+  // Search
+  usersRouter.get('/search', async(req, res)=>{
+    const query  = req.query.q;
+    try {
+    const search = await Users.find({
+        $or : [
+          {userName : { $regex: query, $options: "i"}},
+          {email : { $regex: query, $options: "i"}},
+        ]
+    })
+      return res.status(200).json({msg : "Search successfully", search});
+    } catch (error) {
+      return res.status(500).json({msg : "Server error", error});
+    }
+  })
+
 module.exports = usersRouter
