@@ -7,9 +7,17 @@ require("dotenv").config();
 
 const authRouter = Router();
 
+// SignUp
 authRouter.post("/signup", async (req, res) => {
   const { userName, email, phoneNo, type, gender, passWord } = req.body;
-  console.log(phoneNo.length);
+
+  const firstCharacterIsLetter = /^[A-Z]/.test(userName);
+  if (!firstCharacterIsLetter) {
+    return res.status(400).json({
+      msg: "Username must start with a captal letter",
+    });
+  }
+
   const uniqueEmail =
     (await Users.countDocuments({ email })) > 0 ? true : false;
   if (uniqueEmail) {
@@ -26,8 +34,9 @@ authRouter.post("/signup", async (req, res) => {
 
   const phoneNoPattern = /^\d{10}$/;
   if (!phoneNoPattern.test(phoneNo)) {
-    return res.status(400).json({msg: "Mobile no must contain exactly 10 digits",
-    });
+    return res
+      .status(400)
+      .json({ msg: "Mobile no must contain exactly 10 digits" });
   }
 
   const passwordPattern =
@@ -56,6 +65,8 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
+
+// Login
 authRouter.post("/login", async (req, res) => {
   const { email, passWord } = req.body;
   const user = await Users.findOne({ email: email });
@@ -96,10 +107,3 @@ authRouter.post("/login", async (req, res) => {
 });
 
 module.exports = authRouter;
-
-// "userName" : "nitesh",
-// "email" : "niftesh@gmail.com",
-// "phoneNo" : 1234567898,
-// "type" : "admin",
-// "gender" : "male",
-// "passWord" : "1234"

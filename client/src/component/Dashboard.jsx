@@ -5,13 +5,17 @@ import GetUserData from "./GetUserData";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false)
+
 
   const getData = () => {
+    setLoading(true)
     let getId = JSON.parse(localStorage.getItem("pvtroute"));
     axios
       .get(`http://localhost:8080/user/getUserData/${getId.userId}`)
       .then((res) => {
         setData(res.data.getUserData);
+        setLoading(false)
       })
       .catch((err) => {
         console.log("error", err);
@@ -28,10 +32,12 @@ const Dashboard = () => {
   }, []);
 
   const getAllData = () => {
+    setLoading(true)
     axios
       .get(`http://localhost:8080/user/getAll`)
       .then((res) => {
         setData(res.data.getAllData);
+        setLoading(false)
       })
       .catch((err) => {
         console.log("error", err);
@@ -62,6 +68,8 @@ const Dashboard = () => {
           data={data}
           getAllData={getAllData}
           handleSearch={handleSearch}
+          loading={loading}
+          setLoading={setLoading}
         />
       </div>
     </div>

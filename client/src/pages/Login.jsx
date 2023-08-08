@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./css/login.css";
+import eyeimg1 from "./eyeimg/eyeimg1.jpeg"
+import eyeimg2 from "./eyeimg/eyeimg2.jpeg"
 
 let init = {
   email: "",
@@ -11,6 +13,8 @@ let init = {
 
 export const Login = () => {
   const [login, setlogin] = useState(init);
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChanged = (e) => {
@@ -71,15 +75,27 @@ export const Login = () => {
             required
           />
           <br />
-          <input
-            type="password"
+          <div className="show_hide_password_div">
+            <input
+             type={showPassword ? "text" : "password"}
             name="passWord"
             className="inpu2"
             placeholder="PassWord"
             onChange={handleChanged}
             value={login.passWord}
             required
-          />
+            />
+            <span
+              className="show_hide_password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <img src={eyeimg2} alt="eyehide" />
+              ) : (
+                <img src={eyeimg1} alt="eyeshow" />
+              )}
+            </span>
+          </div>
           <br />
           <input className="inpu4" type="submit" value="Log In" />
         </form>
