@@ -9,7 +9,7 @@ const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
   const { userName, email, phoneNo, type, gender, passWord } = req.body;
-
+  console.log(phoneNo.length);
   const uniqueEmail =
     (await Users.countDocuments({ email })) > 0 ? true : false;
   if (uniqueEmail) {
@@ -24,11 +24,17 @@ authRouter.post("/signup", async (req, res) => {
       .json({ msg: "Mobile no alredy present", uniquePhoneNo });
   }
 
+  const phoneNoPattern = /^\d{10}$/;
+  if (!phoneNoPattern.test(phoneNo)) {
+    return res.status(400).json({msg: "Mobile no must contain exactly 10 digits",
+    });
+  }
+
   const passwordPattern =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/;
   if (!passwordPattern.test(passWord)) {
     return res.status(400).json({
-      msg: "Password must contain at least one capital letter, one number, one small letter, and one symbol",
+      msg: "Password must contain at least one capital letter, one number, one small letter, and one symbol and limit 8",
     });
   }
 

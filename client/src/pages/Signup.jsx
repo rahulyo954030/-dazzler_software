@@ -35,8 +35,10 @@ export const Signup = () => {
           alert(err.response.data.msg);
         }
          else if(err.response.status === 500){
-          // console.log(err.response.data.msg);
           alert(err.response.data.msg);
+        }
+        else if(err.response.status === 400){
+          alert(err.response.data.msg)
         }
         else{
           alert(err.response.data.msg);
@@ -85,14 +87,14 @@ export const Signup = () => {
           />
           <select required className="inp2" name="type" onChange={handleChange}>
             <option value="">Type</option>
-            <option value="user">user</option>
-            <option value="admin">admin</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
           </select>
           <br />
           <select required className="inp2" name="gender" onChange={handleChange}>
             <option value="">Gender</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
           <br />
           <input

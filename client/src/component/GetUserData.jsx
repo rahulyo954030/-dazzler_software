@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 
-const GetUserData = ({ data, getAllData }) => {
+const GetUserData = ({ data, getAllData, handleSearch }) => {
   let getId = JSON.parse(localStorage.getItem("pvtroute"));
 
   // Delete
@@ -27,32 +27,42 @@ const GetUserData = ({ data, getAllData }) => {
       // setLoader(false)
     }
   };
-
   return (
     <div>
       {data?.length != 0 ? (
         <>
           <TableContainer
             className=""
-            style={{ border: "1px solid white", marginTop: "2rem" }}
+            style={{ marginTop: "3rem" }}
             component={Paper}
           >
+            {data?.length >= 1 ? (
+            <input
+              onChange={handleSearch}
+              style={{
+                height: "2rem",
+                width: "15rem",
+                marginLeft: "15rem",
+              }}
+              placeholder="Search"
+            />
+          ) : null}
             <Table
               sx={{ minWidth: 800 }}
-              style={{ border: "1px solid white" }}
+              style={{ backgroundColor: "#f3e8ff", marginTop: "1rem" }}
               aria-label="simple table"
             >
-              <TableHead>
-                <TableRow style={{ border: "1px solid white" }}>
-                  <TableCell align="center">Username</TableCell>
-                  <TableCell align="center">Email</TableCell>
-                  <TableCell align="center">PhoneNo</TableCell>
-                  <TableCell align="center">Type</TableCell>
-                  <TableCell align="center">Gender</TableCell>
+              <TableHead >
+                <TableRow>
+                  <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">Username</TableCell>
+                  <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">Email</TableCell>
+                  <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">PhoneNo</TableCell>
+                  <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">Type</TableCell>
+                  <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">Gender</TableCell>
                   {
                     <>
-                      {getId?.type == "admin" ? (
-                        <TableCell align="center">Delete</TableCell>
+                      {getId?.type == "Admin" ? (
+                        <TableCell style={{fontSize: "16px", fontWeight: "bold"}} align="center">Delete</TableCell>
                       ) : null}
                     </>
                   }
@@ -62,20 +72,31 @@ const GetUserData = ({ data, getAllData }) => {
                 {data?.length > 0 ? (
                   <>
                     {data?.map((e) => {
-                      if (e?.type === "admin") return;
+                      if (e?.type === "Admin") return;
                       return (
                         <>
                           <TableRow key={e._id}>
-                            <TableCell align="center">{e.userName}</TableCell>
-                            <TableCell align="center">{e.email}</TableCell>
-                            <TableCell align="center">{e.phoneNo}</TableCell>
-                            <TableCell align="center">{e.type}</TableCell>
-                            <TableCell align="center">{e.gender}</TableCell>
-                                  <TableCell align="center">
-                                    <button onClick={() => handleDelete(e._id)}>
-                                      Delete
-                                    </button>
-                                  </TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{e.userName}</TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{e.email}</TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{e.phoneNo}</TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{e.type}</TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{e.gender}</TableCell>
+                            <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">
+                              <button
+                                style={{
+                                  width: "5rem",
+                                  height: "2.5rem",
+                                  backgroundColor: "#ecf5f5",
+                                  border: "1px solid",
+                                  cursor: "pointer",
+                                  borderRadius: "5px",
+                                  fontWeight: "500"
+                                }}
+                                onClick={() => handleDelete(e._id)}
+                              >
+                                Delete
+                              </button>
+                            </TableCell>
                           </TableRow>
                         </>
                       );
@@ -83,11 +104,11 @@ const GetUserData = ({ data, getAllData }) => {
                   </>
                 ) : (
                   <TableRow>
-                    <TableCell align="center">{data.userName}</TableCell>
-                    <TableCell align="center">{data.email}</TableCell>
-                    <TableCell align="center">{data.phoneNo}</TableCell>
-                    <TableCell align="center">{data.type}</TableCell>
-                    <TableCell align="center">{data.gender}</TableCell>
+                    <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{data.userName}</TableCell>
+                    <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{data.email}</TableCell>
+                    <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{data.phoneNo}</TableCell>
+                    <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{data.type}</TableCell>
+                    <TableCell style={{fontSize: "16px", fontWeight: "100"}} align="center">{data.gender}</TableCell>
                   </TableRow>
                 )}
               </TableBody>

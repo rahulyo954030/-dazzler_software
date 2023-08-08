@@ -8,11 +8,9 @@ const Dashboard = () => {
 
   const getData = () => {
     let getId = JSON.parse(localStorage.getItem("pvtroute"));
-    console.log(getId);
     axios
       .get(`http://localhost:8080/user/getUserData/${getId.userId}`)
       .then((res) => {
-        console.log(res);
         setData(res.data.getUserData);
       })
       .catch((err) => {
@@ -22,7 +20,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     let getId = JSON.parse(localStorage.getItem("pvtroute"));
-    if (getId.type == "admin") {
+    if (getId.type == "Admin") {
       getAllData();
     } else {
       getData();
@@ -40,12 +38,31 @@ const Dashboard = () => {
       });
   };
 
-  let getId = JSON.parse(localStorage.getItem("pvtroute"));
+  // Search
+  const handleSearch = (e) => {
+    let value = e.target.value;
+    if (value.length !== 0) {
+      axios
+        .get(`http://localhost:8080/user/search?q=${value}`)
+        .then((res) => {
+          setData(res.data.search);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      getAllData();
+    }
+  };
 
   return (
     <div>
       <div>
-        <GetUserData data={data} getAllData={getAllData} />
+        <GetUserData
+          data={data}
+          getAllData={getAllData}
+          handleSearch={handleSearch}
+        />
       </div>
     </div>
   );
