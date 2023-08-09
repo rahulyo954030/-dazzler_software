@@ -18,6 +18,7 @@ let init = {
 export const Signup = () => {
   const [signup, setSignupdata] = useState(init);
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmShowPassword, setconfirmShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -53,7 +54,7 @@ export const Signup = () => {
     <>
       <div className="signup_main_cont">
         <h1
-          style={{ fontWeight: "bold", fontSize: "21px", paddingTop: "1rem" }}
+          style={{ fontWeight: "bold", fontSize: "21px" }}
         >
           Register User
         </h1>
@@ -88,13 +89,13 @@ export const Signup = () => {
             value={signup.phoneNo}
             required
           />
-          <select required className="inp2" name="type" onChange={handleChange}>
+          <select required className="selectType" name="type" onChange={handleChange}>
             <option value="">Type</option>
             <option value="User">User</option>
             <option value="Admin">Admin</option>
           </select>
           <br />
-          <select required className="inp2" name="gender" onChange={handleChange}>
+          <select required className="selectGender" name="gender" onChange={handleChange}>
             <option value="">Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -115,6 +116,28 @@ export const Signup = () => {
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
+                <img src={eyeimg2} alt="eyehide" />
+              ) : (
+                <img src={eyeimg1} alt="eyeshow" />
+              )}
+            </span>
+          </div>
+          <br />
+            <div className="show_hide_password_div">
+            <input
+             type={confirmShowPassword ? "text" : "password"}
+             name="confirmPassword"
+             className="confirmPassword"
+             placeholder="ConfirmPassword"
+             onChange={handleChange}
+             value={signup.confirmPassword}
+             required
+            />
+            <span
+              className="confirm_show_hide_password"
+              onClick={() => setconfirmShowPassword(!confirmShowPassword)}
+            >
+              {confirmShowPassword ? (
                 <img src={eyeimg2} alt="eyehide" />
               ) : (
                 <img src={eyeimg1} alt="eyeshow" />

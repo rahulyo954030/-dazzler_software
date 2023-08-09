@@ -19,6 +19,9 @@ const userSchema = new Schema({
     passWord : {
         type: String
     },
+    confirmPassword  : {
+        type: String
+    },
 })
 
 const Users = model("user", userSchema);

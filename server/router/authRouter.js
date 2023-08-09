@@ -9,7 +9,7 @@ const authRouter = Router();
 
 // SignUp
 authRouter.post("/signup", async (req, res) => {
-  const { userName, email, phoneNo, type, gender, passWord } = req.body;
+  const { userName, email, phoneNo, type, gender, passWord, confirmPassword } = req.body;
 
   const firstCharacterIsLetter = /^[A-Z]/.test(userName);
   if (!firstCharacterIsLetter) {
@@ -45,6 +45,10 @@ authRouter.post("/signup", async (req, res) => {
     return res.status(400).json({
       msg: "Password must contain at least one capital letter, one number, one small letter, and one symbol and limit 8",
     });
+  }
+
+  if (passWord !== confirmPassword) {
+    return res.status(400).json({ msg: "Passwords do not match" });
   }
 
   const hashPassword = await bcrypt.hash(passWord, 10);
